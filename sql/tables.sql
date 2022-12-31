@@ -1,0 +1,4 @@
+CREATE TABLE Quests(
+  quest_id SERIAL PRIMARY KEY,
+  title VARCHAR(96) NOT NULL
+);
