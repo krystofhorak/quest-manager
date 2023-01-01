@@ -14,22 +14,22 @@ questRouter.get('/', async (_, res) => {
   }
 });
 
-questRouter.get('/:id', async (req, res) => {
-  const { id } = req.params;
+questRouter.post('/', async (req, res) => {
   try {
-    const quest = await pool.query('SELECT * FROM Quests WHERE quest_id = $1', [id]);
-    res.json(quest?.rows?.[0] ?? null);
+    const { title } = req.body;
+    const newQuest = await pool.query('INSERT INTO Quests (title) VALUES ($1) RETURNING *', [title]);
+    res.json(newQuest?.rows?.[0] ?? null);
   } catch (error) {
     console.log(error);
     res.status(500).send('Error!');
   }
 });
 
-questRouter.post('/', async (req, res) => {
+questRouter.get('/:id', async (req, res) => {
+  const { id } = req.params;
   try {
-    const { title } = req.body;
-    const newQuest = await pool.query('INSERT INTO Quests (title) VALUES ($1) RETURNING *', [title]);
-    res.json(newQuest?.rows?.[0] ?? null);
+    const quest = await pool.query('SELECT * FROM Quests WHERE quest_id = $1', [id]);
+    res.json(quest?.rows?.[0] ?? null);
   } catch (error) {
     console.log(error);
     res.status(500).send('Error!');

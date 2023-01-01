@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { Pool } from 'pg';
 
 import questRouter from './routes/questRoutes';
+import questListRouter from './routes/questListRoutes';
 
 const app = express();
 app.use(cors());
@@ -23,6 +24,7 @@ const port = process.env.PORT || DEFAULT_PORT;
 
 // Routes
 app.use('/quest', questRouter);
+app.use('/questlist', questListRouter);
 
 app.listen(port, () => {
   console.log(`[STATUS] Listening on port ${port}...`);
