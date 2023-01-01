@@ -1,3 +1,5 @@
+import DefaultLayout from '../layout/DefaultLayout';
+
 import { useQuests } from '../hooks/dataHooks';
 
 const HomePage = (): JSX.Element => {
@@ -5,9 +7,9 @@ const HomePage = (): JSX.Element => {
   console.log(quests);  
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Home</h1>
-    </>
+    </DefaultLayout>
   );
 };
 
