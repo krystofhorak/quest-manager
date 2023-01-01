@@ -1,19 +1,25 @@
 import DefaultLayout from '../layout/DefaultLayout';
 import Loader from '../components/elements/Loader';
 
-import { useQuests } from '../hooks/dataHooks';
+import { useQuestLists } from '../hooks/dataHooks';
 
 const HomePage = (): JSX.Element => {
-  const { quests, loading } = useQuests();
+  const { questsLists, loading } = useQuestLists();
+  console.log(questsLists);
 
   return (
     <DefaultLayout>
       <h1>Home</h1>
       <h2>Quests</h2>
       {loading ? <Loader /> : null}
-      {quests && !loading ? quests.map(quest => (
-        <div key={quest.quest_id}>
-          <h3>{quest.title}</h3>
+      {questsLists && !loading ? questsLists.map(questList => (
+        <div key={questList.questlist_id}>
+          <h3>{questList.title}</h3>
+          <ul>
+            {questList.quests ? questList.quests.map(quest => (
+              <li key={quest.quest_id}>{quest.title}</li>
+            )) : null}
+          </ul>
         </div>
       )) : null}
     </DefaultLayout>
