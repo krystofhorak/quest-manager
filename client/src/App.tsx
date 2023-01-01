@@ -1,14 +1,12 @@
-import { useQuests } from './hooks/dataHooks';
+import { Routes, Route } from 'react-router-dom';
 
-const App = (): JSX.Element => {
-  const { quests } = useQuests();
-  console.log(quests);  
+import HomePage from './pages/HomePage';
 
-  return (
-    <>
-      <h1>Initial Commit</h1>
-    </>
+const App = (): JSX.Element =>
+  (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
-};
 
 export default App;
