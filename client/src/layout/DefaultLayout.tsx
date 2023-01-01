@@ -1,3 +1,5 @@
+import PageNavigation from '../components/blocks/PageNavigation';
+
 interface IProps {
   children: React.ReactNode;
 }
@@ -5,6 +7,7 @@ interface IProps {
 const DefaultLayout = ({ children }: IProps): JSX.Element =>
   (
     <>
+      <PageNavigation />
       {children}
     </>
   );
